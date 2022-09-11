@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Agregar palabra</title>
+</head>
+<body>
+
+    <header class="cabecera">
+        <p><img src="imagenes/LogoAlura.png" alt="Logo Alura" class="imgLogo"></p>
+    </header>
+
+    <main class="contenedor">
+        <section>   
+            <textarea id="introducirPalabra" placeholder="Introduzca la palabra"></textarea>
+        </section>
+            
+        <section id="areaAdvertencia" >
+            <img id="imgAdvertencia" src="imagenes/SignoExclamacion.png" alt="Advertencia">
+            <p id="textoAdvertencia">La palabra debe contener entre 2 y 8 carácteres, todos alfabéticos</p>
+        </section>
+
+        <section >
+            <div class="botonesInferior">
+                <button id="guardar" class="botonRedondeado" style="background-color: #3D5A80;">Guardar</button>
+                <button id="empezar" class="botonRedondeado" style="background-color: #3D5A80;"><a href="areaJuego.html">Empezar</a></button>
+                <button id="cancelar" class="botonRedondeado" style="background-color: #98C1D9;">Cancelar</button>
+            </div>
+
+         </section>
+
+    </main>
+
+    <footer>
+        <a href="https://github.com/JohanGTS/AhorcadoWeb"><img class="imgFooter" src="imagenes/logoGitHub.png" alt="Logo GitHub"></a>
+        <a href="https://www.linkedin.com/in/johangtavera/"><img class="imgFooter" src="imagenes/logoLinedInNegro.png" alt="Logo LinkedIn"></a>
+        <p>Johan Tavera &copy 2022</p>
+    </footer>
+
+</body>
+
+
+<script src="script.js">
+</script>
+</html>

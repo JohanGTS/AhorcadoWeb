@@ -3,15 +3,25 @@
     box-sizing: border-box;
 }
 
-body html section{
+body, html, section{
     width: 100%;
 }
+
 
 body{
     display: flex;
     flex-direction: column;
-    background-color: #E0FBFC;
     flex-wrap: wrap;
+
+    
+    background-color: #E0FBFC;
+
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 
@@ -30,14 +40,15 @@ main{
 
 
 .contenedor{
-    min-height: 70%;
     width: 100%;
+    min-height: 90%;
     position: fixed;
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     
     gap: 10px;
 
@@ -45,22 +56,21 @@ main{
 }
 
 .botonRedondeado{
-
-    
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-
     font-size: 1em;
     color: white;
     border: none;
     width: 12em;
 
+    text-align: center;
     border-radius: 24px;
     padding: 10px;
+}
+
+a{
+    position: relative;    
+   z-index: 1;     
+   padding: 3em;     
+   margin: -3em; 
 }
 
 a:link,a:visited,a:active{
@@ -73,14 +83,14 @@ a:link,a:visited,a:active{
 
 footer{
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     text-align: center;
     padding: 4px;
 }
 
-img{
-    width: 5%;
+.imgFooter{
+    width: 2.5%;
     display: inline-block;
     vertical-align: middle;
 }
@@ -88,3 +98,57 @@ img{
 footer p{
     display: inline-block;
 }
+
+
+/* Inicio estilos agregarPalabra*/
+
+
+#introducirPalabra{
+    width: 80%;
+    background: none;
+    padding: 0.5em;
+    resize: none;
+    font-size: 3em;
+    border: none;
+    width: 80%;
+    text-align: center;
+    
+}
+
+textarea:focus{
+    border: none;
+    overflow: hidden;
+    outline: none;
+}
+
+#areaAdvertencia{
+    text-align: center;
+    position: relative;
+    box-sizing: content-box;
+    width: auto;
+
+    /*
+    margin-left: 25%;
+    */
+}
+
+#imgAdvertencia{
+    float: left;
+    margin-right: 1em;
+}
+
+#textoAdvertencia{
+    display: inline-block;
+}
+
+.botonesInferior{
+    width: 100%;
+    margin:1%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+
+
+/* Fin estilos agregarPalabra*/

@@ -16,6 +16,7 @@ body{
     
     background-color: #E0FBFC;
 
+    min-height: 100vh;
     
     font-family: 'Inter';
     font-style: normal;
@@ -23,6 +24,14 @@ body{
     font-size: 16px;
     line-height: 19px;
 }
+
+body > *{
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+       -moz-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+  }
 
 
 main{
@@ -41,8 +50,7 @@ main{
 
 .contenedor{
     width: 100%;
-    min-height: 90%;
-    position: fixed;
+    height: 80%;
     
     display: flex;
     flex-direction: column;
@@ -66,12 +74,6 @@ main{
     padding: 10px;
 }
 
-a{
-    position: relative;    
-   z-index: 1;     
-   padding: 3em;     
-   margin: -3em; 
-}
 
 a:link,a:visited,a:active{
     text-decoration: none;
@@ -83,7 +85,7 @@ a:link,a:visited,a:active{
 
 footer{
     width: 100%;
-    position: fixed;
+    position: relative;
     bottom: 0;
     text-align: center;
     padding: 4px;
@@ -142,9 +144,10 @@ textarea:focus{
 }
 
 .botonesInferior{
-    width: 100%;
+    width: 99%;
     margin:1%;
-    position: absolute;
+    margin-top: auto;
+    position: relative;
     bottom: 0;
     text-align: center;
 }

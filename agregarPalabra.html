@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="estilos.css">
     <title>Agregar palabra</title>
 </head>
-<body>
+<body >
 
     <header class="cabecera">
         <p><img src="imagenes/LogoAlura.png" alt="Logo Alura" class="imgLogo" ></p>
@@ -16,11 +16,11 @@
 
     <main class="contenedor">
 
-            <section>   
-            <textarea id="introducirPalabra" placeholder="Introduzca la palabra"></textarea>
+        <section>   
+            <textarea id="introducirPalabra" placeholder="Introduzca la palabra" onkeypress="return lettersOnly(event)"></textarea>
         </section>
-           
-        
+         
+
         <section id="areaAdvertencia" >
             <img id="imgAdvertencia" src="imagenes/SignoExclamacion.png" alt="Advertencia">
             <p id="textoAdvertencia">La palabra debe contener entre 2 y 8 carácteres, todos alfabéticos</p>

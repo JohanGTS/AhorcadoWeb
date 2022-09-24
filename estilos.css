@@ -123,7 +123,7 @@ footer p{
     
 }
 
-textarea:focus{
+#introducirPalabra:focus{
     border: none;
     overflow: hidden;
     outline: none;
@@ -135,9 +135,6 @@ textarea:focus{
     box-sizing: content-box;
     width: auto;
 
-    /*
-    margin-left: 25%;
-    */
 }
 
 #imgAdvertencia{
@@ -159,6 +156,60 @@ textarea:focus{
 
 }
 
-
-
 /* Fin estilos agregarPalabra*/
+
+/* Inicio estilos areaJuego*/
+
+#horca{
+    width: 1200px;
+    height: 1000px;
+}
+.areaLetras{
+    
+}
+
+.conjuntoCajas{
+    display: flex;
+    justify-content: center;
+}
+
+.nda{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.areaCajas{
+    display: inline-block;
+    position: relative;
+    bottom: 0;
+}
+
+.cajasMultiples{
+    resize: none;
+    background: transparent;
+    width: 5em;
+    height: 2em;
+
+    border: none;
+    border-bottom:  solid 4px black;
+    border-radius: 4px;
+
+    font-size: 1em;
+    width: 3.5em;
+    text-align: center;
+    
+    margin-right: 1em;
+}
+
+.cajasMultiples:focus{
+    outline: none;
+}
+#ahorcado{
+    width: 25%;
+    /*75% cel*/
+}
+/* Fin estilos areaJuego*/

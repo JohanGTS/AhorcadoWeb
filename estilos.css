@@ -165,21 +165,12 @@ footer p{
     height: 1000px;
 }
 .areaLetras{
-    
+    height: 4.5em;
 }
 
 .conjuntoCajas{
     display: flex;
     justify-content: center;
-}
-
-.nda{
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .areaCajas{
@@ -195,12 +186,13 @@ footer p{
     height: 2em;
 
     border: none;
-    border-bottom:  solid 4px black;
+    border-bottom:  solid 4px #293241;
     border-radius: 4px;
 
     font-size: 1em;
     width: 3.5em;
     text-align: center;
+    font-weight: bold;
     
     margin-right: 1em;
 }
@@ -212,4 +204,25 @@ footer p{
     width: 25%;
     /*75% cel*/
 }
+
+#letraFallada{
+    resize: none;
+    border: none;
+    background-color: transparent;
+    width: 15em;
+
+    margin-top: 1em;
+
+    font-size: 1em;
+    font-weight: bold;
+    color: #EE6C4D;
+
+}
+
+#letraFallada:focus{
+    border: none;
+    overflow: hidden;
+    outline: none;
+}
+
 /* Fin estilos areaJuego*/

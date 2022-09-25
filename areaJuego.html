@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="estilos.css">
     <title>Área de juego</title>
 </head>
-<body onload="comienza()">
+<body onload="comienza()" onkeypress="return esLetra2(event)">
 <!-- #region 
 <div>
                 <img id="ahorcado" alt="ahorcado" src="/imagenes/">
@@ -26,6 +26,7 @@
 
         <section class="areaLetras">
             <div id="conjuntoCajas"></div>
+            <textarea id="letraFallada" readonly ></textarea>
         </section>
 
         <section class="botonesInferior">

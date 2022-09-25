@@ -1,18 +1,21 @@
 
 const palabraAgregada= document.getElementById("introducirPalabra");
-
+let letraFallada= document.getElementById("letraFallada");
 
 
 let conjuntoPalabras=["BUG","BINARIO","HTML","JAVA","COOKIE","CURSOR","DATOS","ARCHIVO","CARPETA","HACKER",
-"CSS","OBJETO","LINK","MENU","MODEM","RED","12345678"];
+"CSS","OBJETO","LINK","MENU","MODEM","RED"];
 
+let letrasErradas="";
+let aciertos=0;
+let letrasCorrectas="";
 let storedArray;
 
 let palabraSecreta="";
 
 let puedeEscribir=true;
 
-window.sessionStorage.setItem("items", JSON.stringify(conjuntoPalabras));
+window.sessionStorage.setItem("items", JSON.stringify(conjuntoPalabras));// se declara donde se almacenará el array en el cache
 
 let fallos=0;
 
@@ -28,75 +31,26 @@ function irAgregarPalabra(){
     window.location.href = 'agregarPalabra.html';
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
 function comienza()
 {
+    letraFallada.value="";
     fallos=0;
+    aciertos=0;
+    contador=0;
+    letrasCorrectas="";
+    letrasErradas="";
     limpiarConjuntoCajas();
     generarPalabraSecreta();
     totalCaja();
     cambiarImagen("ahorcado0");
-    esperarLetras();
-}
-function esLetra(event)
-{
-    //return((event.charCode >= 97 && event.charCode <= 122)||(event.charCode >= 65 && event.charCode <= 90)||event.charCode==164||event.charCode==165);
-    const pattern = new RegExp('^[a-zA-Z]+$');
-    let pal= event.key;
-    if(pattern.test(pal))
-    {
-        console.log("1");
-    } 
-    else{
-        console.log("0");
-    }
-    return pattern.test(pal);
-}
-
-
-
-
-function lettersOnly() 
-{
-            var charCode = event.keyCode;
-
-            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8)
-
-                return true;
-            else
-                return false;
-}
-
-function esperarLetras(){
-    document.addEventListener('keyup', (event) => {
-        var keyName = event.key;
-        var KeyCode = event.keyCode; 
-        const pattern = new RegExp('^[A-Z]+$', 'i');
-
-        if(KeyCode >= 65 && KeyCode <=90){
-            //Imprime la letra presionada
-            //console.log(keyName);
-            if(pattern.test(keyName)){
-                if(puedeEscribir){
-                    console.log(keyName);
-                }
-            }
-        }
-        else{
-            return
-        }
-      }, false);
 }
 
 function generarPalabraSecreta()
 {
     storedArray=JSON.parse(sessionStorage.getItem("items"));
     let palabra=storedArray[Math.floor(Math.random() * conjuntoPalabras.length)];
-   palabraSecreta= palabra;
-   console.log(palabraSecreta);
+    palabraSecreta= palabra;
+    console.log(palabraSecreta);
 }
 
 function agregarALista()
@@ -107,7 +61,7 @@ function agregarALista()
         alert("Palabra fuera de rango");
         return;
     }
-    storedArray=JSON.parse(sessionStorage.getItem("items"));
+    storedArray=JSON.parse(sessionStorage.getItem("items"));// se obtiene una copia actualizada de los elementos en el array
     if(storedArray.includes(palabraVerificar))
     {
         alert("Palabra existente");
@@ -125,44 +79,19 @@ function mostrarPalabra(){
 }
 
 
-function esLetra(event){
-    /*return evento.charCode >= 65 && evento.charCode <= 90*/
-    return (event.charCode >= 48 && event.charCode <= 57)
 
-}
 
 /* Inicio funciones del canvas */ 
-
-function dibujarCanva()
-{
-    horca.lineWidth=8;
-    horca.lineCap="round";
-    horca.linJoin="round";
-    horca.fillStyle("#F3F5F6");
-    horca.strokeStyle="#8A3871";
-
-    horca.fillRect(0,0,1200,1860);
-    horca.beginPath();
-    horca.moveTo(650,500);
-    horca.lineTo(900,500);
-    horca.stroke();
-    horca.closePath();
-    
-}
 
 const conjuntoCajas= document.getElementById("conjuntoCajas");
 let contador=0;
 let textBox="";
 
 
+
 function totalCaja()
-{ 
-    /*generarPalabraSecreta();
-    alert(palabraSecreta);
-    alert(longitud);*/
-    
-    let longitud= palabraSecreta.length;
-    for(let i=0;i<longitud;i++)
+{    
+    for(let i=0;i<palabraSecreta.length;i++)
     {
         agregarCaja();
     }
@@ -170,10 +99,10 @@ function totalCaja()
 
 function agregarCaja(){
     var div= document.createElement("div");
-    div.setAttribute("class","areaCajas");
-    div.setAttribute("id","caja"+contador);
+    div.setAttribute("class","areaCajas"); // añadimos la clase al elemento creadao
+    div.setAttribute("id","caja"+contador);// le asignamos un id
 
-    textBox='<textarea id="caja'+contador+'" class="cajasMultiples" readonly ></textarea> ';
+    textBox='<textarea id="caja'+contador+'" class="cajasMultiples" readonly value=""></textarea> '; // declaramos las propiedades del textarea nueva
     div.innerHTML=textBox;
     conjuntoCajas.appendChild(div);
     contador++;
@@ -185,22 +114,89 @@ function limpiarConjuntoCajas() {
     }
   }
 
+  function rellenarCaja(letra)
+  {
+      for(let i=0;i<palabraSecreta.length;i++)
+      {
+          if(palabraSecreta[i]==letra)
+          {
+            let caja= document.getElementById('caja'+i).innerHTML='<textarea class="cajasMultiples" readonly>'+letra+'</textarea> ';;
+            aciertos++;
+            if(aciertos==palabraSecreta.length)
+            {
+                console.log("ganaste");
+                return false;
+            }
+          }
+      }
+  
+  }
 
-  function cambiarImagen(nombre){
+
+ function verificar(){
+    //mierda si acierta
+    //else
+    if(aciertos==palabraSecreta.length||fallos==6)
+    {
+        return false;
+    }
+
+    if(esLetra(event))
+    {
+        let letra=event.key.toUpperCase();
+        if(palabraSecreta.includes(letra))
+        {
+            letrasCorrectas+=letra;
+            rellenarCaja(letra);
+            console.log(letra);
+        }
+        else{
+            if(!letrasErradas.includes(letra))
+            {
+                fallos++;
+                letrasErradas+=letra;
+                let agregar= letra+"    ";
+                letraFallada.value+=agregar;
+                
+                cambiarImagen("ahorcado"+fallos);
+                if(fallos==6)
+                    {
+                        console.log("Has perdido");
+                    }
+            }
+            
+        }
+        return true;
+    }
+    else
+    {
+        return false
+    }
+    
+  }
+
+  
+function esLetra() 
+{
+    var charCode = event.keyCode;
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) ) // se comprueba si el código de la tecla corresponde a una letra
+        return true;
+            
+    return false;
+}
+
+function esLetra2()
+{
+    if(esLetra(event))
+    {
+        verificar(event);
+        return true;
+    }
+    return false;
+}
+/* Fin funciones del canvas */ 
+
+function cambiarImagen(nombre){
     let img= document.getElementById("ahorcado");
     img.src="/imagenes/"+nombre+".png";
   }
-
-  function verificar(){
-    //mierda si acierta
-    //else
-    fallos++;
-    if(fallos==7)
-    {
-        
-        fallos=0;
-    }
-    let numAhorcado="ahorcado"+fallos;
-    cambiarImagen(numAhorcado);
-  }
-/* Fin funciones del canvas */ 

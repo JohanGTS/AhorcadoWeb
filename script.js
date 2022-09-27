@@ -1,10 +1,14 @@
 
 const palabraAgregada= document.getElementById("introducirPalabra");
 let letraFallada= document.getElementById("letraFallada");
+const bodyAreaJuego= document.querySelector(".contenedor");
+const mostrarMensaje=document.querySelector(".mostrarMensaje");
+//const nuevoJuego= 
 
 
-let conjuntoPalabras=["BUG","BINARIO","HTML","JAVA","COOKIE","CURSOR","DATOS","ARCHIVO","CARPETA","HACKER",
-"CSS","OBJETO","LINK","MENU","MODEM","RED"];
+let conjuntoPalabras=["BUG"];
+/*,"BINARIO","HTML","JAVA","COOKIE","CURSOR","DATOS","ARCHIVO","CARPETA","HACKER",
+"CSS","OBJETO","LINK","MENU","MODEM","RED"*/
 
 let letrasErradas="";
 let aciertos=0;
@@ -15,7 +19,7 @@ let palabraSecreta="";
 
 let puedeEscribir=true;
 
-window.sessionStorage.setItem("items", JSON.stringify(conjuntoPalabras));// se declara donde se almacenará el array en el cache
+
 
 let fallos=0;
 
@@ -48,7 +52,7 @@ function comienza()
 function generarPalabraSecreta()
 {
     storedArray=JSON.parse(sessionStorage.getItem("items"));
-    let palabra=storedArray[Math.floor(Math.random() * conjuntoPalabras.length)];
+    let palabra=storedArray[Math.floor(Math.random() * storedArray.length)];
     palabraSecreta= palabra;
     console.log(palabraSecreta);
 }
@@ -58,7 +62,7 @@ function agregarALista()
     let palabraVerificar=palabraAgregada.value.toUpperCase();
     if(palabraVerificar.length>8||palabraVerificar.length<2)
     {
-        alert("Palabra fuera de rango");
+        difuminar();
         return;
     }
     storedArray=JSON.parse(sessionStorage.getItem("items"));// se obtiene una copia actualizada de los elementos en el array
@@ -70,24 +74,16 @@ function agregarALista()
     
     conjuntoPalabras.push(palabraVerificar);
     window.sessionStorage.setItem("items", JSON.stringify(conjuntoPalabras));//guardamos el array en el cache
-
+    storedArray=JSON.parse(sessionStorage.getItem("items"));// se obtiene una copia actualizada de los elementos en el array
+    console.log(storedArray);
     palabraAgregada.value="";
 }
-
-function mostrarPalabra(){
-   alert("La palabra era "+palabraSecreta);
-}
-
-
-
 
 /* Inicio funciones del canvas */ 
 
 const conjuntoCajas= document.getElementById("conjuntoCajas");
 let contador=0;
 let textBox="";
-
-
 
 function totalCaja()
 {    
@@ -96,6 +92,12 @@ function totalCaja()
         agregarCaja();
     }
 }
+
+if(mostrarMensaje!=null)
+{
+    mostrarMensaje.style.display="none"
+}
+
 
 function agregarCaja(){
     var div= document.createElement("div");
@@ -124,7 +126,18 @@ function limpiarConjuntoCajas() {
             aciertos++;
             if(aciertos==palabraSecreta.length)
             {
-                console.log("ganaste");
+                difuminar();
+                let complemento;
+                if(fallos==1)
+                {
+                    complemento=fallos+" fallo";
+                }
+                else
+                {
+                    complemento=fallos+" fallos";
+                }
+                mensajesMostrarMensaje("¡Has ganado!","Con tan solo "+complemento);
+
                 return false;
             }
           }
@@ -134,8 +147,7 @@ function limpiarConjuntoCajas() {
 
 
  function verificar(){
-    //mierda si acierta
-    //else
+
     if(aciertos==palabraSecreta.length||fallos==6)
     {
         return false;
@@ -148,7 +160,8 @@ function limpiarConjuntoCajas() {
         {
             letrasCorrectas+=letra;
             rellenarCaja(letra);
-            console.log(letra);
+            
+            
         }
         else{
             if(!letrasErradas.includes(letra))
@@ -161,7 +174,8 @@ function limpiarConjuntoCajas() {
                 cambiarImagen("ahorcado"+fallos);
                 if(fallos==6)
                     {
-                        console.log("Has perdido");
+                        difuminar();
+                        mensajesMostrarMensaje("¡Has perdido!",("La palabra era "+palabraSecreta.toLowerCase()));
                     }
             }
             
@@ -200,3 +214,28 @@ function cambiarImagen(nombre){
     let img= document.getElementById("ahorcado");
     img.src="/imagenes/"+nombre+".png";
   }
+
+
+ function difuminar()
+ {
+    bodyAreaJuego.className+=" difuminar";
+    
+    document.querySelector(".mostrarMensaje").style.display="flex";
+    document.querySelector(".botonesInferior").style.display="none";
+
+ }
+
+ function enfocar()
+ {
+    bodyAreaJuego.className="contenedor";
+    document.querySelector(".mostrarMensaje").style.display="none";
+    document.querySelector(".botonesInferior").style.display="block";
+ }
+
+ function mensajesMostrarMensaje(resultado,masInfo)
+ {
+    document.getElementById("resultado").innerText =resultado;
+    document.getElementById("masInfo").innerText =masInfo;
+
+
+ }

@@ -8,14 +8,8 @@
     <link rel="stylesheet" href="estilos.css">
     <title>Área de juego</title>
 </head>
-<body onload="comienza()" onkeypress="return esLetra2(event)">
-<!-- #region 
-<div>
-                <img id="ahorcado" alt="ahorcado" src="/imagenes/">
-            </div>
-        style="margin-top: 20%;"
-        
-        -->
+<body onload="comienza()" onload="enfocar()" onkeypress="return esLetra2(event)" id="todo">
+
     <header class="cabecera">
         <p><img src="imagenes/LogoAlura.png" alt="Logo Alura" class="imgLogo"></p>
     </header>
@@ -29,12 +23,18 @@
             <textarea id="letraFallada" readonly ></textarea>
         </section>
 
-        <section class="botonesInferior">
-            <button class="botonRedondeado"  style="background-color: #3D5A80;" onclick="comienza()" >Nuevo juego</button>
-            <button class="botonRedondeado" style="background-color: #98C1D9;" onclick="home()">Desistir</button>
-            <button id="p" onclick="verificar()">a</button>
+        <section class="botonesInferior" >
+            <button  id="nuevoJuego" class="botonRedondeado"  style="background-color: #3D5A80;" onclick="comienza()" >Nuevo juego</button>
+            <button class="botonRedondeado" style="background-color: #98C1D9;" onclick="home()">Volver</button>
         </section>
     </main>
+    <section>
+        <div class="mostrarMensaje">
+            <p id="resultado"></p>
+            <p id="masInfo"></p>
+            <button class="botonRedondeado" id="botonOk" onclick="enfocar()">Continuar</button>
+        </div>
+    </section>
     <footer>
         <a href="https://github.com/JohanGTS/AhorcadoWeb"><img class="imgFooter" src="imagenes/logoGitHub.png" alt="Logo GitHub"></a>
         <a href="https://www.linkedin.com/in/johangtavera/"><img class="imgFooter" src="imagenes/logoLinedInNegro.png" alt="Logo LinkedIn"></a>

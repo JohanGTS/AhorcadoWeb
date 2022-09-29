@@ -241,7 +241,7 @@ function limpiarInput()
 
 function cambiarImagen(nombre){
     let img= document.getElementById("ahorcado");
-    img.src="/imagenes/"+nombre+".png";
+    img.src="imagenes/"+nombre+".png";
   }
 
 

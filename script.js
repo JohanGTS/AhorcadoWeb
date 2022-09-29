@@ -3,12 +3,14 @@ const palabraAgregada= document.getElementById("introducirPalabra");
 let letraFallada= document.getElementById("letraFallada");
 const bodyAreaJuego= document.querySelector(".contenedor");
 const mostrarMensaje=document.querySelector(".mostrarMensaje");
+const conjuntoCajas= document.getElementById("conjuntoCajas");
+let valorInput=document.querySelector('input');
 //const nuevoJuego= 
 
 
-let conjuntoPalabras=["BUG"];
-/*,"BINARIO","HTML","JAVA","COOKIE","CURSOR","DATOS","ARCHIVO","CARPETA","HACKER",
-"CSS","OBJETO","LINK","MENU","MODEM","RED"*/
+let conjuntoPalabras=["BUG","BINARIO","HTML","JAVA","COOKIE","CURSOR","DATOS","ARCHIVO","CARPETA","HACKER",
+"CSS","OBJETO","LINK","MENU","MODEM","RED"];
+
 
 let letrasErradas="";
 let aciertos=0;
@@ -19,7 +21,11 @@ let palabraSecreta="";
 
 let puedeEscribir=true;
 
-
+storedArray=JSON.parse(sessionStorage.getItem("items"));
+if(storedArray==null)
+{
+    storedArray=conjuntoPalabras;
+}
 
 let fallos=0;
 
@@ -35,6 +41,8 @@ function irAgregarPalabra(){
     window.location.href = 'agregarPalabra.html';
 }
 
+
+
 function comienza()
 {
     letraFallada.value="";
@@ -47,15 +55,24 @@ function comienza()
     generarPalabraSecreta();
     totalCaja();
     cambiarImagen("ahorcado0");
+    valorInput.disabled=false;
 }
 
 function generarPalabraSecreta()
 {
     storedArray=JSON.parse(sessionStorage.getItem("items"));
-    let palabra=storedArray[Math.floor(Math.random() * storedArray.length)];
-    palabraSecreta= palabra;
+
+    if(Array.isArray(storedArray))
+    {
+        palabraSecreta=storedArray[Math.floor(Math.random() * storedArray.length)];
+    }
+    else
+    {
+        palabraSecreta=conjuntoPalabras[Math.floor(Math.random() * conjuntoPalabras.length)];
+    }
     console.log(palabraSecreta);
 }
+
 
 function agregarALista()
 {
@@ -63,25 +80,24 @@ function agregarALista()
     if(palabraVerificar.length>8||palabraVerificar.length<2)
     {
         difuminar();
+        mostrarMensajeAgregarPalabra("Palabra fuera de rango");
         return;
     }
-    storedArray=JSON.parse(sessionStorage.getItem("items"));// se obtiene una copia actualizada de los elementos en el array
     if(storedArray.includes(palabraVerificar))
     {
-        alert("Palabra existente");
+        difuminar();
+        mostrarMensajeAgregarPalabra("Palabra existente");
         return;
     }
     
     conjuntoPalabras.push(palabraVerificar);
     window.sessionStorage.setItem("items", JSON.stringify(conjuntoPalabras));//guardamos el array en el cache
     storedArray=JSON.parse(sessionStorage.getItem("items"));// se obtiene una copia actualizada de los elementos en el array
-    console.log(storedArray);
     palabraAgregada.value="";
 }
 
 /* Inicio funciones del canvas */ 
 
-const conjuntoCajas= document.getElementById("conjuntoCajas");
 let contador=0;
 let textBox="";
 
@@ -208,6 +224,19 @@ function esLetra2()
     }
     return false;
 }
+
+function limpiarInput()
+{
+    console.log(valorInput.value)
+    if(valorInput.value.length!=0)
+    {
+       valorInput.value="";
+       if(fallos==6)
+       {
+        valorInput.disabled=true;
+       }
+    }
+}
 /* Fin funciones del canvas */ 
 
 function cambiarImagen(nombre){
@@ -232,10 +261,13 @@ function cambiarImagen(nombre){
     document.querySelector(".botonesInferior").style.display="block";
  }
 
+ function mostrarMensajeAgregarPalabra(mensaje)
+ {
+    document.getElementById("mensaje").innerText =mensaje;
+ }
+ 
  function mensajesMostrarMensaje(resultado,masInfo)
  {
     document.getElementById("resultado").innerText =resultado;
     document.getElementById("masInfo").innerText =masInfo;
-
-
  }

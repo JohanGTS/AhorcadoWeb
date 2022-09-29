@@ -23,6 +23,10 @@
             <textarea id="letraFallada" readonly ></textarea>
         </section>
 
+        <div>
+            <input type="text" id="inputMovil" placeholder="Inserte la letra aquí" pattern="[a-zA-Z0-9!@#$%^*_|]{0,1}" onkeypress="limpiarInput()">
+        </div>
+
         <section class="botonesInferior" >
             <button  id="nuevoJuego" class="botonRedondeado"  style="background-color: #3D5A80;" onclick="comienza()" >Nuevo juego</button>
             <button class="botonRedondeado" style="background-color: #98C1D9;" onclick="home()">Volver</button>

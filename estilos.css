@@ -201,20 +201,20 @@ footer p{
 }
 #ahorcado{
     width: 25%;
-    /*75% cel*/
 }
 
 #letraFallada{
     resize: none;
     border: none;
     background-color: transparent;
-    width: 15em;
+    width: 100%;
 
-    margin-top: 1em;
+    margin: 1em 0;
 
     font-size: 1em;
     font-weight: bold;
     color: #EE6C4D;
+    text-align: center;
 
 }
 
@@ -270,4 +270,56 @@ footer p{
 }
 /* Fin estilos areaJuego */
 
+#inputMovil{
+    border-radius: 1em;
+    background: transparent;
+    resize: none;
+    padding: 7px;
+    display: none;
+    box-sizing: border-box;
+    margin-top: 2.5em;
+}
 
+@media screen and (max-width:669px){
+
+    #inputMovil{
+        display: block;
+    }
+
+    #textoAdvertencia{
+        width: 90%;
+    }
+
+    #introducirPalabra{
+        font-size: 2em;
+        margin-top: 25%;
+    }
+
+    #imgAdvertencia{
+        margin: 0 0 0 1em;
+    }
+
+    #ahorcado{
+        margin-top: 20%;
+        width: 70%;
+    }
+
+    .cajasMultiples{
+    }
+
+    .conjuntoCajas{
+        margin-left: 0.5em;
+    }
+}
+
+@media only screen  and (min-device-width: 768px) and (max-device-width: 1024px) { /*css específico para tablets*/
+    #ahorcado{
+        margin-top: 20%;
+        width: 50%;
+    }
+
+    #inputMovil{
+        display: block;
+    }
+    
+}

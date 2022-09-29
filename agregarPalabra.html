@@ -14,34 +14,34 @@
         <p><img src="imagenes/LogoAlura.png" alt="Logo Alura" class="imgLogo" ></p>
     </header>
 
-    <main class="contenedor">
+    <main>
 
-        <section>   
-            <textarea id="introducirPalabra" placeholder="Introduzca la palabra" onkeypress="return esLetra(event)"></textarea>
-        </section>
-         
-
-        <section id="areaAdvertencia" >
-            <img id="imgAdvertencia" src="imagenes/SignoExclamacion.png" alt="Advertencia">
-            <p id="textoAdvertencia">La palabra debe contener entre 2 y 8 carácteres, todos alfabéticos</p>
-        </section>
-        
-                
+        <div class="contenedor">
+            <section>   
+                <textarea id="introducirPalabra" placeholder="Introduzca la palabra" onkeypress="return esLetra(event)"></textarea>
+            </section>
+             
+    
+            <section id="areaAdvertencia" >
+                <img id="imgAdvertencia" src="imagenes/SignoExclamacion.png" alt="Advertencia">
+                <p id="textoAdvertencia">La palabra debe contener entre 2 y 8 carácteres, todos alfabéticos</p>
+            </section>
+            
+                    
             <div class="botonesInferior">
                 <button id="guardar" class="botonRedondeado" style="background-color: #3D5A80;" onclick="agregarALista()">Guardar</button>
                 <button id="empezar" class="botonRedondeado" style="background-color: #3D5A80;" onclick="iniciarJuego()">Empezar</button>
                 <button id="cancelar" class="botonRedondeado" style="background-color: #98C1D9;" onclick="home()">Cancelar</button>
-            </div>
-       
+                </div>
+           
+        </div>
+
+        <section class="mostrarMensaje">
+                <p id="mensaje"></p>
+                <button class="botonRedondeado" id="botonOk" onclick="enfocar()">Continuar</button>
+        </section>
 
     </main>
-
-    <section>
-        <div class="mostrarMensaje">
-            <p>Palabra fuera de rango</p>
-            <button class="botonRedondeado" id="botonOk" onclick="enfocar()">Continuar</button>
-        </div>
-    </section>
 
     <footer>
         <a href="https://github.com/JohanGTS/AhorcadoWeb"><img class="imgFooter" src="imagenes/logoGitHub.png" alt="Logo GitHub"></a>

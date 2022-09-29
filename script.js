@@ -239,9 +239,9 @@ function limpiarInput()
 }
 /* Fin funciones del canvas */ 
 
-function cambiarImagen(nombre){
+function cambiarImagen(numero){
     let img= document.getElementById("ahorcado");
-    img.src="imagenes/"+nombre+".png";
+    img.src="./imagenes/"+numero+".png";
   }
 
 
